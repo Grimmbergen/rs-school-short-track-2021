@@ -33,7 +33,9 @@ function minesweeper(matrix) {
       if (i > 0) {
         if (matrix[i - 1][j - 1] || matrix[i - 1][j] || matrix[i - 1][j + 1]) {
           res[i][j]++;
-        } else if ((matrix[i - 1][j - 1] && matrix[i - 1][j]) || (matrix[i - 1][j] && matrix[i - 1][j + 1]) || (matrix[i - 1][j - 1] && matrix[i - 1][j + 1])) {
+        } else if ((matrix[i - 1][j - 1] && matrix[i - 1][j])
+        || (matrix[i - 1][j] && matrix[i - 1][j + 1])
+        || (matrix[i - 1][j - 1] && matrix[i - 1][j + 1])) {
           res[i][j] += 2;
         } else if (matrix[i - 1][j - 1] && matrix[i - 1][j] && matrix[i - 1][j + 1]) {
           res[i][j] += 3;
@@ -42,7 +44,9 @@ function minesweeper(matrix) {
       if (i < matrix.length - 1) {
         if (matrix[i + 1][j - 1] || matrix[i + 1][j] || matrix[i + 1][j + 1]) {
           res[i][j]++;
-        } else if ((matrix[i + 1][j - 1] && matrix[i + 1][j]) || (matrix[i + 1][j] && matrix[i + 1][j + 1]) || (matrix[i + 1][j - 1] && matrix[i + 1][j + 1])) {
+        } else if ((matrix[i + 1][j - 1] && matrix[i + 1][j])
+        || (matrix[i + 1][j] && matrix[i + 1][j + 1])
+        || (matrix[i + 1][j - 1] && matrix[i + 1][j + 1])) {
           res[i][j] += 2;
         } else if (matrix[i + 1][j - 1] && matrix[i + 1][j] && matrix[i + 1][j + 1]) {
           res[i][j] += 3;
