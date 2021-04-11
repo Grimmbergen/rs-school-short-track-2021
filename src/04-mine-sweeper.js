@@ -21,8 +21,36 @@
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  throw new Error('Not implemented');
+function minesweeper(matrix) {
+  const res = matrix.map((el) => el.map(() => 0));
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix[i].length; j++) {
+      if (matrix[i][j - 1] || matrix[i][j + 1]) {
+        res[i][j]++;
+      } else if (matrix[i][j - 1] && matrix[i][j + 1]) {
+        res[i][j] += 2;
+      }
+      if (i > 0) {
+        if (matrix[i - 1][j - 1] || matrix[i - 1][j] || matrix[i - 1][j + 1]) {
+          res[i][j]++;
+        } else if ((matrix[i - 1][j - 1] && matrix[i - 1][j]) || (matrix[i - 1][j] && matrix[i - 1][j + 1]) || (matrix[i - 1][j - 1] && matrix[i - 1][j + 1])) {
+          res[i][j] += 2;
+        } else if (matrix[i - 1][j - 1] && matrix[i - 1][j] && matrix[i - 1][j + 1]) {
+          res[i][j] += 3;
+        }
+      }
+      if (i < matrix.length - 1) {
+        if (matrix[i + 1][j - 1] || matrix[i + 1][j] || matrix[i + 1][j + 1]) {
+          res[i][j]++;
+        } else if ((matrix[i + 1][j - 1] && matrix[i + 1][j]) || (matrix[i + 1][j] && matrix[i + 1][j + 1]) || (matrix[i + 1][j - 1] && matrix[i + 1][j + 1])) {
+          res[i][j] += 2;
+        } else if (matrix[i + 1][j - 1] && matrix[i + 1][j] && matrix[i + 1][j + 1]) {
+          res[i][j] += 3;
+        }
+      }
+    }
+  }
+  return res;
 }
 
 module.exports = minesweeper;
